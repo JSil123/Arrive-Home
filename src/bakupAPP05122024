@@ -1,7 +1,6 @@
 // eslint-disable-next-line
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import './Map.js'; // Assuming this is where your map component is imported
 import alarmSound from './alarmhey.m4a'; // Import the alarm sound file
 
 function App() {
@@ -48,20 +47,10 @@ function App() {
     }
   };
 
-  // Function to handle sending proof
-  const sendProof = () => {
-    // Simulate capturing proof (photo or video)
-    captureProof();
-    // Update proof status
-    setProofProvided(true);
-  };
-
   return (
     <div className="App">
       <header className="App-header">
         <h1>Arrive Home</h1>
-        {/* Display button to send proof if proof hasn't been provided */}
-        {!proofProvided && <button onClick={sendProof}>Send Proof</button>}
         <button onClick={arriveHome}>I'm Home!</button>
       </header>
     </div>
