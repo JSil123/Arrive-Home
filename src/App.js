@@ -1,7 +1,6 @@
 // eslint-disable-next-line
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import './Map.js'; // Assuming this is where your map component is imported
 import alarmSound from './alarmhey.m4a'; // Import the alarm sound file
 
 function App() {
@@ -55,6 +54,34 @@ function App() {
     // Update proof status
     setProofProvided(true);
   };
+
+  // Function to handle arrival notification
+  const handleArrivalNotification = () => {
+    // Simulate sending arrival notification to a designated contact
+    const user = "Jenn"; // Replace with actual user name or identifier
+    const contact = "Spike"; // Replace with actual contact name or identifier
+    fetch('/arrival-notification', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ user, contact }),
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Failed to send arrival notification');
+      }
+      console.log('Arrival notification sent successfully');
+    })
+    .catch(error => {
+      console.error('Error sending arrival notification:', error.message);
+    });
+  };
+
+  useEffect(() => {
+    // Call the arrival notification function when component mounts (simulate user arriving home)
+    handleArrivalNotification();
+  }, []); // Empty dependency array ensures this effect runs only once when component mounts
 
   return (
     <div className="App">
